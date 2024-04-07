@@ -1,0 +1,45 @@
+{
+  "name": "smma-tool",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@radix-icons/vue": "^1.0.0",
+    "@tauri-apps/api": ">=2.0.0-beta.0",
+    "@tauri-apps/plugin-shell": ">=2.0.0-beta.0",
+    "@vee-validate/zod": "^4.12.6",
+    "@vueuse/core": "^10.9.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "embla-carousel": "^8.0.1",
+    "embla-carousel-vue": "^8.0.1",
+    "radix-vue": "^1.6.2",
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss-animate": "^1.0.7",
+    "v-calendar": "^3.1.2",
+    "vaul-vue": "^0.1.0",
+    "vee-validate": "^4.12.6",
+    "vue": "^3.3.4",
+    "vue-sonner": "^1.1.2",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.11.4",
+    "@tauri-apps/cli": ">=2.0.0-beta.0",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "nuxt": "^3.11.2",
+    "shadcn-nuxt": "^0.10.2",
+    "typescript": "^5.4.4",
+    "vite": "^5.0.0",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  }
+}
