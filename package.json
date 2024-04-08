@@ -9,7 +9,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "start":"yarn run tauri dev"
   },
   "dependencies": {
     "@radix-icons/vue": "^1.0.0",
@@ -27,7 +28,6 @@
     "v-calendar": "^3.1.2",
     "vaul-vue": "^0.1.0",
     "vee-validate": "^4.12.6",
-    "vue": "^3.3.4",
     "vue-sonner": "^1.1.2",
     "zod": "^3.22.4"
   },

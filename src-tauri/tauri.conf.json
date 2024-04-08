@@ -1,18 +1,20 @@
 {
   "productName": "smma-tool",
   "version": "0.0.0",
-  "identifier": "com.tauri.dev",
+  "identifier": "com.smma.tool",
   "build": {
     "beforeDevCommand": "yarn run dev",
     "devUrl": "http://localhost:3000",
-    "beforeBuildCommand": "yarn run build",
+    "beforeBuildCommand": "yarn run generate",
     "frontendDist": "../dist"
   },
   "app": {"windows": [
       {
         "title": "smma-tool",
-        "width": 800,
-        "height": 600
+        "width": 1280,
+        "height": 720,
+        "minWidth": 1280,
+        "minHeight": 720
       }
     ],
     "security": {
