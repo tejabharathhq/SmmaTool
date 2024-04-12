@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   // (optional) Enable the Nuxt devtools
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt'],
+  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt',  '@nuxtjs/color-mode'],
   shadcn: {
     /**
      * Prefix for all the imported component
@@ -13,6 +13,9 @@ export default defineNuxtConfig({
      * @default "./components/ui"
      */
     componentDir: './components/ui'
+  },
+  colorMode: {
+    classSuffix: ''
   },
   // Enable SSG
   ssr: false,

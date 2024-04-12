@@ -10,10 +10,11 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "tauri": "tauri",
-    "start":"yarn run tauri dev"
+    "start": "yarn run tauri dev"
   },
   "dependencies": {
     "@radix-icons/vue": "^1.0.0",
+    "@tanstack/vue-table": "^8.15.3",
     "@tauri-apps/api": ">=2.0.0-beta.0",
     "@tauri-apps/plugin-shell": ">=2.0.0-beta.0",
     "@vee-validate/zod": "^4.12.6",
@@ -22,6 +23,7 @@
     "clsx": "^2.1.0",
     "embla-carousel": "^8.0.1",
     "embla-carousel-vue": "^8.0.1",
+    "lucide-vue-next": "^0.367.0",
     "radix-vue": "^1.6.2",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
@@ -32,6 +34,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@nuxtjs/color-mode": "^3.3.3",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@tauri-apps/cli": ">=2.0.0-beta.0",
     "@vitejs/plugin-vue": "^5.0.4",

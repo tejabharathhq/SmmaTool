@@ -34,6 +34,9 @@
                     <TableCaption>A list of the most recent scrapes</TableCaption>
                     <TableHeader>
                         <TableRow>
+                            <TableHead class="w-6">
+                                Number
+                            </TableHead>
                             <TableHead>
                                 Name
                             </TableHead>
@@ -60,10 +63,17 @@
                             <TableHead>
                                 Reviews
                             </TableHead>
+
+                            <TableHead>
+                                Location
+                            </TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <TableRow v-for="lead in leads" :key="lead.name">
+                        <TableRow v-for="(lead, index) in leads" :key="lead.name">
+                            <TableCell class="font-medium">
+                                {{ index }}
+                            </TableCell>
                             <TableCell class="font-medium">
                                 {{ lead.name }}
                             </TableCell>
@@ -77,6 +87,10 @@
                             </TableCell>
                             <TableCell class="text-right">
                                 {{ lead.ratings }}
+                            </TableCell>
+
+                            <TableCell class="text-right capitalize">
+                                {{ lead.location }}
                             </TableCell>
                         </TableRow>
                     </TableBody>
@@ -98,7 +112,7 @@ const generatedUrl = ref('');
 const businessCategory = ref('');
 const location = ref('');
 const cycles = ref([33]); // Default value for cycles
-const leads = ref([]); // Placeholder for leads data
+const leads = useState('recent-leads', () => []);
 let responseJSON = '[]'
 
 const handleScrape = async () => {
@@ -107,13 +121,13 @@ const handleScrape = async () => {
     console.log("Generated URL:", url);
     generatedUrl.value = url;
     console.log(url, cycles.value[0])
-    const response = await invoke("scrape", { query: url, max: `${cycles.value[0]}` });
+    const response = await invoke("scrape", { query: url, max: `${cycles.value[0]}`, location: location.value.toLowerCase() });
     responseJSON = response
     leads.value = JSON.parse(response);
 }
 
 
 const handleCopy = () => {
-    navigator.clipboard.writeText(responseJSON);
+    navigator.clipboard.writeText(JSON.stringify(leads.value));
 }
 </script>

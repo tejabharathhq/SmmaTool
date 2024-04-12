@@ -1,24 +1,58 @@
-<template>
-    <div class="w-full">
-        <h1 class="w-full text-5xl text-center pt-20 font-semibold">
-            SMMA TOOL
-        </h1>
+<script setup lang="ts">
+import { SunIcon, MoonIcon, GearIcon } from '@radix-icons/vue'
+import { invoke } from "@tauri-apps/api/core";
+import { Button } from '@/components/ui/button'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
-        <div class="flex items-center gap-x-3 justify-center py-32">
-            
-            <NuxtLink to="/leads">
-                <Button>Leads</Button>
-            </NuxtLink>
+const colorMode = useColorMode()
 
-            <NuxtLink to="/scrape">
-                <Button>Scrape</Button>
-            </NuxtLink>
-
-
-        </div>
-    </div>
-</template>
-
-<script setup>
+const submit = async () => {
+    const response = await invoke("greet",{name:'ass'});
+}
 
 </script>
+
+<template>
+    <nav class="w-full flex items-center justify-between px-2 py-2">
+
+        <h2 class="font-bold uppercase">Eros Scraper</h2>
+        <div class="flex items-center">
+
+            <div class="gap-x-3 mr-2 flex items-center">
+
+                <Button @click="submit">Greet</Button>
+                <NuxtLink to="/leads">
+                    <Button>Leads</Button>
+                </NuxtLink>
+
+                <NuxtLink to="/scrape">
+                    <Button>Scrape</Button>
+                </NuxtLink>
+            </div>
+            <DropdownMenu>
+                <DropdownMenuTrigger as-child>
+                    <Button variant="ghost" size="icon">
+                        <SunIcon v-if="colorMode.preference == 'light'"></SunIcon>
+                        <MoonIcon v-else></MoonIcon>
+                        <span class="sr-only">Toggle theme</span>
+                    </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                    <DropdownMenuItem @click="colorMode.preference = 'light'">
+                        Light
+                    </DropdownMenuItem>
+                    <DropdownMenuItem @click="colorMode.preference = 'dark'">
+                        Dark
+                    </DropdownMenuItem>
+                    <DropdownMenuItem @click="colorMode.preference = 'system'">
+                        System
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+           <!--  <Button variant="ghost" size="icon">
+                <GearIcon></GearIcon>
+            </Button> -->
+        </div>
+    </nav>
+
+</template>
