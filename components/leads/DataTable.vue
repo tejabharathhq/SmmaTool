@@ -59,16 +59,69 @@ const table = useVueTable({
         get columnFilters() { return columnFilters.value },
         get columnVisibility() { return columnVisibility.value },
         get rowSelection() { return rowSelection.value },
-    }
+    },
 })
+
+const columnSearchValue = ref('name');
+const searchStringPlaceHolder = ref('Search by Name')
+
+const changeColumnSearchId = (id: string) => {
+    columnSearchValue.value = id
+    if (id === 'name') {
+        searchStringPlaceHolder.value = "Search by Name";
+    } else if (id === 'website') {
+        searchStringPlaceHolder.value = "Search by Website";
+    } else if (id === 'phone') {
+        searchStringPlaceHolder.value = "Search by Phone Number";
+    } else if (id === 'address') {
+        searchStringPlaceHolder.value = "Search by Address";
+    } else if (id === 'ratings') {
+        searchStringPlaceHolder.value = "Search by Ratings";
+    } else if (id === 'url') {
+        searchStringPlaceHolder.value = "Search by URL";
+    } else if (id === 'owner_name') {
+        searchStringPlaceHolder.value = "Search by Owner's Name";
+    } else if (id === 'location') {
+        searchStringPlaceHolder.value = "Search by Location";
+    } else if (id === 'status') {
+        searchStringPlaceHolder.value = "Search by Status";
+    } else if (id === 'actions') {
+        searchStringPlaceHolder.value = "Search by Actions";
+    } else {
+        console.error("Invalid field ID");
+    }
+}
 </script>
 
 <template>
-    <div>
-        <div class="flex items-center py-4">
-            <Input class="max-w-sm" placeholder="Filter Names..."
-                :model-value="table.getColumn('name')?.getFilterValue() as string"
-                @update:model-value=" table.getColumn('name')?.setFilterValue($event)" />
+    <div class="flex flex-col h-full">
+        <div class="flex items-center py-4 max-h-fit gap-x-2">
+            <!--         Change this drop down menus to get to search the drop down that this selects -->
+            <Input class="w-full" :placeholder="searchStringPlaceHolder"
+                :model-value="table.getColumn(columnSearchValue)?.getFilterValue() as string"
+                @update:model-value=" table.getColumn(columnSearchValue)?.setFilterValue($event)" />
+
+
+            <DropdownMenu>
+                <DropdownMenuTrigger as-child>
+                    <Button variant="outline" class="ml-auto">
+                        Search Using
+                        <ChevronDown class="w-4 h-4 ml-2" />
+                    </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                    <DropdownMenuCheckboxItem
+                        v-for="column in table.getAllColumns().filter((column) => column.getCanHide())"
+                        :checked="column.id == columnSearchValue" :key="column.id" class="capitalize"
+                        @click="changeColumnSearchId(column.id)">
+                        <div> {{ column.id }}
+
+                        </div>
+
+                    </DropdownMenuCheckboxItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+            <!--         Change this drop down menu above to get to search the drop down that this selects -->
             <DropdownMenu>
                 <DropdownMenuTrigger as-child>
                     <Button variant="outline" class="ml-auto">
@@ -87,7 +140,7 @@ const table = useVueTable({
                 </DropdownMenuContent>
             </DropdownMenu>
         </div>
-        <div class="border rounded-md">
+        <div class="border rounded-md flex-grow h-full overflow-y-auto">
             <Table>
                 <TableHeader>
                     <TableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
@@ -97,7 +150,7 @@ const table = useVueTable({
                         </TableHead>
                     </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody class="h-full overflow-y-auto">
                     <template v-if="table.getRowModel().rows?.length">
                         <TableRow v-for="row in table.getRowModel().rows" :key="row.id"
                             :data-state="row.getIsSelected() ? 'selected' : undefined">

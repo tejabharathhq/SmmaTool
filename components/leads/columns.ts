@@ -2,9 +2,10 @@ import { h } from 'vue';
 import type { ColumnDef } from '@tanstack/vue-table';
 import type { LeadItem } from '@/types/LeadItem';
 import DropdownAction from '@/components/leads/DataTableDropDown.vue';
-import { ArrowUpDown, ChevronDown } from 'lucide-vue-next';
+import { CheckIcon, Cross1Icon } from '@radix-icons/vue'
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Breadcrumb } from '#build/components';
 
 export const columns: ColumnDef<LeadItem>[] = [
     {
@@ -23,11 +24,6 @@ export const columns: ColumnDef<LeadItem>[] = [
         enableHiding: false,
     },
     {
-        accessorKey: 'id',
-        header: 'ID',
-        cell: ({ row }) => h('div', {}, row.getValue('id')),
-    },
-    {
         accessorKey: 'name',
         header: 'Name',
         cell: ({ row }) => h('div', {}, row.getValue('name')),
@@ -35,12 +31,38 @@ export const columns: ColumnDef<LeadItem>[] = [
     {
         accessorKey: 'website',
         header: 'Website',
-        cell: ({ row }) => h('div', {}, row.getValue('website')),
+        cell: ({ row }) => {
+            const websiteValue: string = row.getValue('website');
+            if (websiteValue === "Empty") {
+                return h(Cross1Icon);
+            } else {
+                let formattedLink = websiteValue.trim(); // Trim whitespace
+                if (!formattedLink.startsWith('http')) {
+                    formattedLink = `https://${decodeURIComponent(formattedLink)}`;
+                }
+                return h("a", {
+                    href: formattedLink,
+                    target: '_blank', // Open link in a new tab
+                    rel: 'noopener noreferrer', // Recommended for security when using target="_blank"
+                }, h(Button, { size: "sm", variant: "secondary" },
+                row.getValue('website')
+                ))
+            }
+        },
     },
+
     {
         accessorKey: 'phone',
         header: 'Phone',
-        cell: ({ row }) => h('div', {}, row.getValue('phone')),
+        cell: ({ row }) => h("a", {
+            href: `tel:${row.getValue('phone')}`,
+            variant: "link",
+            target: '_blank', // Open link in a new tab
+            rel: 'noopener noreferrer', // Recommended for security when using target="_blank"
+        }, h(Button, {
+            variant: "secondary",
+            size: "sm"
+        }, row.getValue('phone'))),
     },
     {
         accessorKey: 'address',
@@ -49,32 +71,38 @@ export const columns: ColumnDef<LeadItem>[] = [
     },
     {
         accessorKey: 'has_website',
-        header: 'Has Website',
-        cell: ({ row }) => h('div', {}, row.getValue('has_website')),
+        header: "Website?",
+        cell: ({ row }) => {
+            const hasWebsite = row.getValue('has_website');
+            return hasWebsite ? h(CheckIcon) : h(Cross1Icon);
+        },
     },
     {
         accessorKey: 'has_phone',
-        header: 'Has Phone',
-        cell: ({ row }) => h('div', {}, row.getValue('has_phone')),
+        header: 'Phone?',
+        cell: ({ row }) => {
+            const hasPhone = row.getValue('has_phone');
+            return hasPhone ? h(CheckIcon) : h(Cross1Icon);
+        },
     },
-    {
-        accessorKey: 'total_reviews',
-        header: 'Total Reviews',
-        cell: ({ row }) => h('div', {}, row.getValue('total_reviews')),
-    },
+
     {
         accessorKey: 'ratings',
         header: 'Ratings',
-        cell: ({ row }) => h('div', {}, row.getValue('ratings')),
+        cell: ({ row }) => h('div', {}, row.getValue('ratings')), enableResizing: true
     },
     {
         accessorKey: 'url',
         header: 'URL',
-        cell: ({ row }) => h('a', {
+        cell: ({ row }) => h("a", {
             href: row.getValue('url'),
+            variant: "link",
             target: '_blank', // Open link in a new tab
             rel: 'noopener noreferrer', // Recommended for security when using target="_blank"
-        }, row.getValue('url')),
+        }, h(Button, {
+            variant: "secondary",
+            size: "sm"
+        }, 'Open')),
     },
 
     {
@@ -83,19 +111,11 @@ export const columns: ColumnDef<LeadItem>[] = [
         cell: ({ row }) => h('div', {}, row.getValue('owner_name')),
     },
     {
-        accessorKey: 'call_completed',
-        header: 'Call Completed',
-        cell: ({ row }) => h('div', {}, row.getValue('call_completed')),
-    },
-    {
-        accessorKey: 'call_successful',
-        header: 'Call Successful',
-        cell: ({ row }) => h('div', {}, row.getValue('call_successful')),
-    },
-    {
         accessorKey: 'location',
         header: 'Location',
-        cell: ({ row }) => h('div', {}, row.getValue('location')),
+        cell: ({ row }) => h('div', {
+            class:"capitalize"
+        }, row.getValue('location')),
     },
     {
         accessorKey: 'status',

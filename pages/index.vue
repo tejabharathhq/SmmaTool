@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SunIcon, MoonIcon, GearIcon } from '@radix-icons/vue'
+import { SunIcon, MoonIcon } from '@radix-icons/vue'
 import { invoke } from "@tauri-apps/api/core";
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
@@ -7,7 +7,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 const colorMode = useColorMode()
 
 const submit = async () => {
-    const response = await invoke("greet",{name:'ass'});
+    const response = await invoke("greet", { name: 'ass' });
 }
 
 </script>
@@ -49,10 +49,11 @@ const submit = async () => {
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
-           <!--  <Button variant="ghost" size="icon">
+            <!--  <Button variant="ghost" size="icon">
                 <GearIcon></GearIcon>
             </Button> -->
         </div>
     </nav>
+    
 
 </template>
