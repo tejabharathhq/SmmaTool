@@ -8,7 +8,8 @@
     "beforeBuildCommand": "yarn run generate",
     "frontendDist": "../dist"
   },
-  "app": {"windows": [
+  "app": {
+    "windows": [
       {
         "title": "smma-tool",
         "width": 1280,
@@ -19,6 +20,20 @@
     ],
     "security": {
       "csp": null
+    }
+  },
+  "plugins": {
+    "updater": {
+      "endpoints": [
+        "http://localhost:3007"
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEQzRkYxNzJDQUY3MDAzQzQKUldURUEzQ3ZMQmYvMDQwV1ltMk9HODFXU0ZiUjZvVGhVTjBOTlFneDhBL2lZY0RTSEZCRHdOR24K",
+      "windows": {
+        "installMode": "basicUi",
+        "installerArgs": [
+          "/NS"
+        ]
+      }
     }
   },
   "bundle": {

@@ -12,7 +12,20 @@ const router = useRouter();
 const recentLeads = useState<LeadItem[]>('recent-leads', () => []);
 const store = useUserStore();
 
-onMounted(async () => {
+/* onMounted(async () => {
+  const updateTimeString = '2024-4-30';
+
+  const today = new Date();
+  const day = today.getDate();
+  const month = today.getMonth() + 1; // Months are zero-based, so January is 0
+  const year = today.getFullYear();
+
+  const currentTimeString = `${year}-${month}-${day}`
+  if (updateTimeString != currentTimeString) {
+    return router.push('/update')
+  }
+
+  console.log(`${year}-${month}-${day}`);
   const token = localStorage.getItem('token');
   if (token) {
     try {
@@ -21,13 +34,18 @@ onMounted(async () => {
       router.push('/app')
       console.log(store.$state.userState)
     } catch (error) {
-      router.push('/auth/login')
+      router.push('/auth/signin')
     }
 
   } else {
     router.push('/auth/signup')
   }
 
+}) */
+
+
+onMounted(() => {
+  router.push('/app')
 })
 
 const unlisten = await listen('lead-scraped', (event) => {

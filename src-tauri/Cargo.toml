@@ -19,6 +19,7 @@ thirtyfour = "0.32.0"
 tokio = { version = "1", features = ["full"] }
 reqwest = "*"
 scraper = "0.12.0"
+tauri-plugin-updater = "2.0.0-beta"
 
 
 [dependencies.uuid]
