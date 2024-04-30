@@ -14,8 +14,9 @@ const submit = async () => {
 
 <template>
     <nav class="w-full flex items-center justify-between px-2 py-2">
-
-        <h2 class="font-bold uppercase">Eros Scraper</h2>
+        <div class="w-full flex items-center justify-between">
+            <h2 class="font-bold uppercase">DUNCECO</h2>
+        </div>
         <div class="flex items-center">
 
             <div class="gap-x-3 mr-2 flex items-center">
@@ -27,6 +28,10 @@ const submit = async () => {
 
                 <NuxtLink to="/scrape">
                     <Button>Scrape</Button>
+                </NuxtLink>
+
+                <NuxtLink to="/auth/signin">
+                    <Button>Signin</Button>
                 </NuxtLink>
             </div>
             <DropdownMenu>
@@ -54,6 +59,6 @@ const submit = async () => {
             </Button> -->
         </div>
     </nav>
-    
+
 
 </template>
