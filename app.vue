@@ -10,7 +10,7 @@ import type { LeadItem } from "./types/LeadItem";
 import socket from "./socket";
 const router = useRouter();
 const recentLeads = useState<LeadItem[]>("recent-leads", () => []);
-const store = useUserStore();
+
 
 /* onMounted(async () => {
   const token = localStorage.getItem('token');
