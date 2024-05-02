@@ -121,6 +121,9 @@ pub async fn scrape(
         return Err(String::from("Failed to navigate to query URL"));
     }
 
+    let delay_duration = Duration::from_secs(10); // Adjust the duration as needed
+    tokio::time::sleep(delay_duration).await;
+
     let container = match driver.find(By::XPath(CONTAINER_XPATH)).await {
         Ok(container) => container,
         Err(_) => return Err(String::from("Failed to find container element")),
