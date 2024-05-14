@@ -32,7 +32,7 @@ export default defineNuxtConfig({
   ssr: false,
   runtimeConfig: {
     public: {
-      apiBase: "http://localhost:8080",
+      apiBase: "https://api.dunceco.online",
     },
   },
   vite: {

@@ -3,8 +3,9 @@
         <nav
             class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
             <NuxtLink href="#" class="flex items-center gap-2 text-lg font-semibold md:text-base">
-                <Package2 class="h-6 w-6" />
-                <span class="sr-only">Acme Inc</span>
+              <!--   <Package2 class="h-6 w-6" /> -->
+                <img src="@/assets/logo.svg" class="h-6 w-6 min-w-6 min-h-6 dark:invert-0 invert block " alt="">
+             <!--    <span class="sr-only">Acme Inc</span> -->
             </NuxtLink>
             <NuxtLink to="/app/" class="text-muted-foreground transition-colors hover:text-foreground">
                 Dashboard

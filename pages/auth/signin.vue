@@ -10,7 +10,7 @@
         </NuxtLink>
 
         <div class="h-full w-full flex flex-col justify-center">
-            <div class="lg:p-8">
+            <div class=" p-3 lg:p-8">
                 <div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
                     <div class="flex flex-col space-y-2 text-center">
                         <h1 class="text-2xl font-semibold tracking-tight">
