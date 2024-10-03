@@ -24,7 +24,8 @@ onMounted(async () => {
       router.push("/auth/signin");
     }
   } else {
-    router.push("/auth/signup");
+    /* router.push("/auth/signup"); */
+    router.push("/app")
   }
 });
 

@@ -111,7 +111,7 @@ pub async fn scrape(
     };
 
     let caps = DesiredCapabilities::chrome();
-    let driver = match WebDriver::new("http://localhost:9515", caps).await {
+    let driver = match WebDriver::new("http://localhost:58357", caps).await {
         Ok(driver) => driver,
         Err(_) => return Err(String::from("Failed to create WebDriver")),
     };
